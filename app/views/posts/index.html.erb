@@ -1,0 +1,26 @@
+<div id="grey">
+	    <div class="container">
+			<div class="row">
+			    <% @posts.each do |post| %>
+			    
+				<div class="col-lg-8 col-lg-offset-2">
+					<p><img src="/assets/user.png" width="50px" height="50px"> <ba>Stanley Stinson</ba></p>
+					<p><bd><%= post.created_at%></bd></p>
+					<h4><%= post.title %></h4>  
+					<p><%= post.body %></p>
+					<p><a href="/posts/show/<%=post.id%>">Continue Reading...</a></p>
+					<p><a href="/posts/delete/<%=post.id%>">Delete</a></p>						
+			
+				<div class="form-group">
+					<form action="/edit/<%=post.id%>" method="get">
+					<textarea name="id" style="display:none;"><%=post.id%></textarea>
+					<button type="submit" class="btn btn-success">EDIT</button>
+				</form></div>
+				
+					
+				</div>
+                <%end%>
+			</div><!-- /row -->
+	    </div> <!-- /container -->
+	</div><!-- /grey -->
+	<%= link_to "새로운 글", "/posts/new"%>

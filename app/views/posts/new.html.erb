@@ -1,0 +1,37 @@
+<!-- +++++ Contact Section +++++ -->
+	
+	<div class="container pt">
+		<div class="row mt">
+			<div class="col-lg-6 col-lg-offset-3 centered">
+				<h3>새로운 글</h3>
+				<hr>
+			</div>
+		</div>
+		<div class="row mt">	
+			<div class="col-lg-8 col-lg-offset-2">
+				<form role="form" action="/posts/create">
+				<!--  <div class="form-group">-->
+				<!--    <input type="name" class="form-control" id="NameInputEmail1" placeholder="Your Name" name="title">-->
+				<!--    <br>-->
+				<!--  </div>-->
+				<!--  <textarea class="form-control" rows="6" placeholder="Enter your text here" name="body"></textarea>-->
+				<!--    <br>-->
+				<!--  <button type="submit" class="btn btn-success">SUBMIT</button>-->
+				<!--</form>   -->
+				<%= form_tag 'posts/create' do %>
+				<div class="form-group">
+				    <%= text_field_tag  'title', nil, class:"form-control" , placeholder: "제목" %>
+				    <!--<input type="name" class="form-control" id="NameInputEmail1" placeholder="Your Name" name="title">-->
+				    <br>
+				    
+				  </div>
+				    <%= text_area_tag 'body', nil, class:"form-control" %>
+				  <!--<textarea class="form-control" rows="6" placeholder="Enter your text here" name="body"></textarea>-->
+				    <br>
+				    <%= submit_tag 'SUBMIT', class:"btn btn=success" %>
+				  <!--<button type="submit" class="btn btn-success">SUBMIT</button>-->
+				<% end %>
+			</div>
+		</div><!-- /row -->
+	</div><!-- /container -->
+	
