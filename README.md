@@ -1,39 +1,56 @@
-# UOS_LIKELION_RubyOnRails
-#LikeLion
+### Rails를 이용하여 CRUD를 이용한 POST기능을 배우고, 만들어봤습니다.
 
-#### 서울시립대학교 멋쟁이사자처럼 루비 온 레일즈 기초 강의 커리큘럼
-앞으로 18시간 커리큘럼입니다.
+## 2018-05-30 멋쟁이 사자처럼 Rails 강의에서..
 
-18시간이라는 짧은 시간에 하나의 사이트를 만드는 것이 목표인것 만큼, 이론적인 내용보다는 실용적인 내용에 초점을 맞추었습니다.
+Application.hmtl 참조 이유 코드 양을 줄이기 위해
+-><%=yield%> 위에 넣으면 된다.
+Footer 는 아래에 넣는다.
 
-*스터디 목표* : 간단한 블로그 만들기
-*템플릿* : [Stanley Free Website Template | Free CSS Templates | Free CSS](http://www.free-css.com/free-css-templates/page202/stanley)
+File -> local file upload  asset 폴더 아래 stylesheet 와 javascript 에 넣는다
+Assets pipe 라인의 기술로 인해 
+<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+<%= csrf_meta_tags %>
+# 이 코드로 이용해 바로 불러올 수 있다.
 
-### 환경 세팅
+<link href="/assets/css/bootstrap.css" rel="stylesheet">
 
-`bundle install`
 
-`rvm install 2.4.1`
+    <!-- Custom styles for this template -->
+    <link href="/assets/css/main.css" rel="stylesheet">
 
-`rvm use 2.4.1 --default`
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="/assets/js/hover.zoom.js"></script>
+    <script src="/assets/js/hover.zoom.conf.js"></script>
+# 이 코드로 이용해  사용할 수 있따.  /assets@!!!! 기억 할 것
 
-### CRUD
-*1주차* (5월 9일) : Scaffold란 숲을 보며 흐름 알기
+<!--<li><a href="/posts/index">Post</a></li>--> 이것을 대신하여
+# 루비언어를 사용해서 아래와 같이 표현 할 수 있다.
+   <li><%= link_to "Post" "/posts/index" %></li>
 
-* GET, POST, DELETE, PATCH
-* MVC 패턴 알아보기
-* Model
-* create, show, index 직접구현
+<%= post.created_at %>
+#  데이터가 작성된 시간
 
-*2주차* (5월 16일) : CRUD 마스터와 모델 관계
+# 글 순서는 생성된 순으로 바꿔주기
+@posts = Post.all.order(created_at: :desc)
+Asc ->오름차순
+Desc 내림차순
+Order의 default값은 오름차순이다. 
+따라서 내림차순으로 변경
+### @@@@find는 id값만 찾을수있다@@@@
+# 다른 값을 찾기 위해서는 find_by_title 이런식으로 찾는다.==>구글링
 
-* update, destory 구현
-* 1:N 관계 글과 댓글
+# show파일로 가봤자 모두 동일한 페이지 내용이 나온다
+# 따라서 routes.rb파일로 가서 
+‘Posts/show/:id’ =>’posts#show’  show 컨트롤러로 간다.
+Form helper??/
 
-*3주차* (5월 23일) : jquery의 꽃 AJAX
 
-* 댓글을 AJAX로 구현
+	<%= form_tag 'posts/create' do %>
+<%= text_field_tag  'title', nil, class:"form-control"%>
+<%= text_area_tag 'body', nil, class:"form-control" %>
+<%= submit_tag 'SUBMIT', class:"btn btn=success" %>
+# nil이란 value값 순서가 또박또박 이라 value값 nil을 넣어줘야한다.
+# = X : O
 
-*4주차* (5월 30일) : 서비스의 기본 회원가입
 
-* Devise gem
